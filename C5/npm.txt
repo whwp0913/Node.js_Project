@@ -1,0 +1,17 @@
+npm outdated ~ 업데이트할 수 있는 패키지 목록
+
+npm update [package] ~ 해당 패키지 업데이트
+
+npm install [package]
+npm uninstall [package] / npm rm [package] ~ 해당 패키지 삭제 -> node_modules / package.json 에서 사라짐
+
+npm search [keyword] ~ 패키지 검색
+npm info [package] ~ 해당 패키지 세부 정보 파악
+
+npm adduser ~ npm 로그인 기능 -> 패키지 배포할 시 로그인 해야함
+npm whoami ~ 로그인 사용자 확인
+npm logout ~ 로그아웃
+
+npm deprecate [package][version] [message] ~ 해당 패키지 설치 시 경고 메세지
+npm publish ~ 자신이 만든 패키지 배포할 시 사용
+npm unpublish ~ 배포한 패키지를 제거할 시 사용
