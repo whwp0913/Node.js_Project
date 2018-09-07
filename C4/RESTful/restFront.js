@@ -1,26 +1,29 @@
 function getUser() {
     var xhr = new XMLHttpRequest(); //Ajax 통신위해 XMLHttpRequest 생성
-
+    //Ajax 요청에 대한 콜백
     xhr.onload = function () {
         if (xhr.status === 200) {
             var users = JSON.parse(xhr.responseText); //JSON으로 받은 구문을 분석 (객체 반환)
             var list = document.getElementById('list'); //list 객체
-
             list.innerHTML = '';
-            //Object.keys(users) --> users 의 속성과 기능 이름 열거
+
+            //Object.keys(users) --> users 의 속성과 기능 이름 열거 -> map(function) 한번 씩 실행
             Object.keys(users).map(function (key) {
+
                 var userDiv = document.createElement('div');
                 var span = document.createElement('span');
                 span.textContent = users[key];
                 var edit = document.createElement('button');
                 edit.textContent = '수정';
-
+                //수정 버튼 클릭 시
                 edit.addEventListener('click', function() {
                     var name = prompt('바꿀이름을 입력하세요...');
                     if(!name) {
                         return alert('이름을 반드시 입력해주세요');
                     }
+                    //Ajax2
                     var xhr = new XMLHttpRequest();
+                    //Ajax2 요청에 대한 콜백
                     xhr.onload = function() {
                         if(xhr.status === 200) {
                             console.log(xhr.responseText);
@@ -33,10 +36,14 @@ function getUser() {
                     xhr.setRequestHeader('Content-Type', 'application/json');
                     xhr.send(JSON.stringify({name : name}));
                 });
+
                 var remove = document.createElement('button');
                 remove.textConet = '삭제';
+                //삭제 버튼 클릭 시
                 remove.addEventListener('click', function() {
+                    //Ajax3
                     var xhr = new XMLHttpRequest();
+                    //Ajax3 요청에 대한 콜백
                     xhr.onload = function() {
                         if (xhr.status === 200) {
                             console.log(xhr.responseText);
@@ -48,6 +55,7 @@ function getUser() {
                     xhr.open('DELETE', '/users/' + key);
                     xhr.send();
                 });
+                //GET 요청마다 실행
                 userDiv.appendChild(span);
                 userDiv.appendChild(edit);
                 userDiv.appendChild(remove);
@@ -69,6 +77,7 @@ document.getElementById('form').addEventListener('submit', function(e) {
         return alert('이름을 입력하세요...'); //아이디를 입력안했다면 경고 문구
     }
     var xhr = new XMLHttpRequest(); //Ajax 통신 하기위해 XMLHttpRequest 생성
+    //Ajax 요청에 대한 콜백
     xhr.onload = function() {
         if(xhr.status === 201) {
             console.log(xhr.responseText);
