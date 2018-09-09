@@ -4,6 +4,11 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+//session, flash
+var session = require('express-session');
+var flash = require('connect-flash');
+
+//router
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -19,11 +24,24 @@ app.use(function(req, res, next) {
     next();
 });
 
+app.use(cookieParser('secret code'));
+app.use(session({
+    resave: false,
+    saveUninitialized: false,
+    secret: 'secret code',
+    cookie: {
+        httpOnly: true,
+        secure: false
+    }
+}));
+app.use(flash());
+
 app.use(logger('dev'));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
