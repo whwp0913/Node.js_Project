@@ -1,0 +1,15 @@
+{
+  "name": "daily_webtoon",
+  "version": "1.0.0",
+  "description": "webtoon_crawling",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "casperjs": "^1.1.4",
+    "phantomjs": "^2.1.7"
+  }
+}
