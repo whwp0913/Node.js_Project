@@ -43,7 +43,7 @@ function checkUpload() {
 }
 
 //웹툰
-casper.start('', function() {
+casper.start('https://www.naver.com/', function() {
     this.click('.mn_comic');
 });
 
